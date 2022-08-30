@@ -1,5 +1,5 @@
 import os
-from tqdm.autonotebook import trange, tqdm
+# from tqdm.autonotebook import trange, tqdm
 
 import torch
 import torch.nn as nn
@@ -15,9 +15,12 @@ import time
 use_gpu = torch.cuda.is_available()
 device = torch.device("cuda")
 
-# Преобразование обучающих данных для расширения обучающей выборки и её нормализация
-# Для валидационной (тестовой) выборки только нормализация
+
 def data_transform (dataset_path):
+    r"""Преобразование обучающих данных для расширения обучающей выборки и её нормализация
+        применяем Crop, Horizontal flip и Normalize
+        Для валидационной (тестовой) выборки только нормализация
+        Функция возвращает test и train dataloader """
     transform_pipeline = {
         'train': transforms.Compose([
             transforms.RandomResizedCrop(244),
@@ -32,15 +35,15 @@ def data_transform (dataset_path):
             transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
         ]),
     }
-    image_datasets = {x: datasets.ImageFolder(dataset_path) for x in ['train', 'val']}
+    image_datasets = {x: datasets.ImageFolder(dataset_path, transform_pipeline[x]) for x in ['train', 'val']}
     # специальный класс для загрузки данных в виде батчей
     dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=4,
                                                   shuffle=True, num_workers=2)
                    for x in ['train', 'val']}
-    dataset_sizes = {x: len(image_datasets[x]) for x in ['train', 'val']}
-    return dataloaders, dataset_sizes
+
+    return dataloaders['train'], dataloaders['val']
     # папка с данными. Если запускаете в колабе, нужно скопировать данные к себе в директорию и примонтировать диск. Если запускаете локально -- просто скачайте данные
 data_dir = './hymenoptera_data'
-
-class_names = image_datasets['train'].classes
+# dataset_sizes = {x: len(image_datasets[x]) for x in ['train', 'val']}
+# class_names = image_datasets['train'].classes
 
