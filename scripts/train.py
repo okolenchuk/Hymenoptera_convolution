@@ -1,18 +1,16 @@
 import time
+import torch
 
-
-
-def train_model(model, criterion, optimizer, scheduler, num_epochs=20):
+def train_model(model,  criterion, optimizer, scheduler, num_epochs=20, use_gpu=False):
     since = time.time()
 
     best_model_wts = model.state_dict()
     best_acc = 0.0
 
-    # Ваш код здесь
     losses = {'train': [], "val": []}
 
     for epoch in num_epochs:
-        # каждя эпоха имеет обучающую и тестовую стадии
+        # каждая эпоха имеет обучающую и тестовую стадии
         for phase in ['train', 'val']:
             if phase == 'train':
                 scheduler.step()
@@ -63,7 +61,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=20):
             # Ваш код здесь
             losses[phase].append(epoch_loss)
 
-            pbar.set_description('{} Loss: {:.4f} Acc: {:.4f}'.format(
+            print('{} Loss: {:.4f} Acc: {:.4f}'.format(
                 phase, epoch_loss, epoch_acc
             ))
 
