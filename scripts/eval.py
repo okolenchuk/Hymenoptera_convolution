@@ -1,5 +1,30 @@
 import time
 
+def eval(model, dataloader, loss, use_gpu=False):
+    model.eval()
+
+    for X, y in dataloader:
+        if use_gpu == True:
+            X = X.cuda()
+            y = y.cuda()
+
+        y_pred = model(X)
+
+        l = loss(y_pred, y)
+
+        test_loss += l.item()
+
+        test_acc += (y_pred.argmax(dim=1) == y).sum().item()
+        test_iters += 1
+
+        test_passed += len(X)
+
+    print("ep: {}, taked: {:.3f}, train_loss: {}, train_acc: {}, test_loss: {}, test_acc: {}".format(
+        ep, time.time() - start, train_loss / train_iters, train_acc / train_passed,
+            test_loss / test_iters, test_acc / test_passed)
+    )
+
+
 def train_model(model, dataloader, criterion, optimizer, num_epochs=20, use_gpu=False):
     since = time.time()
 

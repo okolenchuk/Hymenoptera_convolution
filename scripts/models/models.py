@@ -4,7 +4,7 @@ from Resnet18_custom import *
 
 # ResNet18 custom
 def ResNet18_cus():
-    return Resnet18_custom()
+    return Resnet18Custom()
 
 
 # VGG16 custom
