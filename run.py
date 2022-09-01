@@ -7,7 +7,7 @@ import numpy as np
 import torchvision
 from torchvision import datasets, models, transforms
 import matplotlib.pyplot as plt
-import time
+
 
 use_gpu = torch.cuda.is_available()
 device = torch.device("cuda")

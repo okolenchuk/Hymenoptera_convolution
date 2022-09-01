@@ -1,10 +1,8 @@
+import time
 
 
 
-
-
-
-def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
+def train_model(model, criterion, optimizer, scheduler, num_epochs=20):
     since = time.time()
 
     best_model_wts = model.state_dict()
@@ -13,10 +11,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
     # Ваш код здесь
     losses = {'train': [], "val": []}
 
-    pbar = trange(num_epochs, desc="Epoch:")
-
-    for epoch in pbar:
-
+    for epoch in num_epochs:
         # каждя эпоха имеет обучающую и тестовую стадии
         for phase in ['train', 'val']:
             if phase == 'train':
@@ -29,7 +24,7 @@ def train_model(model, criterion, optimizer, scheduler, num_epochs=25):
             running_corrects = 0
 
             # итерируемся по батчам
-            for data in tqdm(dataloaders[phase], leave=False, desc=f"{phase} iter:"):
+            for data in dataloaders[phase]:
                 # получаем картинки и метки
                 inputs, labels = data
 
