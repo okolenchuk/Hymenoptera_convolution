@@ -1,24 +1,26 @@
 import torch
-import torchvision
-from Resnet18_custom import *
+from Resnet18_models import *
+
 
 # ResNet18 custom
-def ResNet18_cus():
-    return Resnet18Custom()
+def ResNet18_cus(n_classes):
+    return Resnet18Custom(n_classes)
 
 
 # VGG16 custom
-def VGG16_custom():
-    return Resnet18_custom()
+def VGG16Custom():
+    return
 
 
 # ResNet18 finetune
-
-torchvision.models.resnet18
+def Resnet18(num_classes=2, pretrained=True):
+    model = torch.hub.load('pytorch/Resnet18', 'resnet18', pretrained=pretrained)
+    model.fc = nn.Linear(512, num_classes)
+    return model
 
 
 # VGG16 finetune
-
-torchvision.models.vgg16
-
-
+def VGG16(num_classes=2, pretrained=True):
+    model = torch.hub.load('pytorch/VGG16', 'vgg16', pretrained=pretrained)
+    model.classifier[6] = nn.Linear(4096, num_classes)
+    return model
