@@ -6,7 +6,6 @@ from torch.optim import lr_scheduler
 import numpy as np
 import torchvision
 from torchvision import datasets, models, transforms
-import matplotlib.pyplot as plt
 
 
 use_gpu = torch.cuda.is_available()
@@ -16,7 +15,7 @@ path = r'D:\EDUCATION\IT_academy\Test_models\Hymenoptera_convolution\hymenoptera
 
 from scripts.transform import *
 
-train_loader, test_loader = data_transform(path, batch_size=8)
+dataloaders = data_transform(path, batch_size=8)
 
 
 

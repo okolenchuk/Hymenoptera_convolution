@@ -34,4 +34,4 @@ def data_transform(dataset_path, batch_size=16, use_transform=False):
         dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=batch_size,
                                                       shuffle=True, num_workers=2) for x in ['train', 'val']}
 
-    return dataloaders['train'], dataloaders['val']
+    return dataloaders
