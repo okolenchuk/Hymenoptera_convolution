@@ -1,6 +1,6 @@
 import torch
-from Resnet18_models import *
-
+from Resnet18_model import *
+from VGG16_model import *
 
 # ResNet18 custom
 def resnet18_cus(n_classes):
@@ -9,7 +9,7 @@ def resnet18_cus(n_classes):
 
 # VGG16 custom
 def vgg16custom():
-    return
+    return VGG16Custom(n_classes)
 
 
 # ResNet18 finetune
