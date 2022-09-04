@@ -2,8 +2,10 @@ import time
 import torch
 
 
-def train_model(model, dataloaders, criterion, optimizer, num_epochs=20, use_gpu=False):
+def train_model(model, dataloaders, dataset_sizes, criterion, optimizer, num_epochs=20, use_gpu=False):
     since = time.time()
+    print('Start training model...')
+    print()
 
     best_model_wts = model.state_dict()
     best_acc = 0.0
@@ -52,12 +54,12 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=20, use_gpu
                 running_loss += loss.item()
                 running_corrects += int(torch.sum(preds == labels.data))
 
-            epoch_loss = running_loss / len(dataloaders[phase])
-            epoch_acc = running_corrects / len(dataloaders[phase])
+            epoch_loss = running_loss / dataset_sizes[phase]
+            epoch_acc = running_corrects / dataset_sizes[phase]
 
             losses[phase].append(epoch_loss)
 
-            print('{} Loss: {:.4f} Acc: {:.4f}'.format(phase, epoch_loss, epoch_acc))
+            print('{} epoch \n{} Loss: {:.4f} Acc: {:.4f}'.format(epoch, phase, epoch_loss, epoch_acc))
 
             if phase == 'val' and epoch_acc > best_acc:
                 best_acc = epoch_acc
