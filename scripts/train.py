@@ -16,6 +16,8 @@ def train_model(model, dataloaders, dataset_sizes, criterion, optimizer, num_epo
         model.cuda()
 
     for epoch in range(num_epochs):
+
+        print(f'\nStart {epoch+1} epoch of training')
         for phase in ['train', 'val']:
             if phase == 'train':
                 model.train()
@@ -59,7 +61,7 @@ def train_model(model, dataloaders, dataset_sizes, criterion, optimizer, num_epo
 
             losses[phase].append(epoch_loss)
 
-            print('{} epoch \n{} Loss: {:.4f} Acc: {:.4f}'.format(epoch, phase, epoch_loss, epoch_acc))
+            print('{} Loss: {:.4f} Acc: {:.4f}'.format(phase, epoch_loss, epoch_acc))
 
             if phase == 'val' and epoch_acc > best_acc:
                 best_acc = epoch_acc
