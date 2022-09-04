@@ -38,7 +38,6 @@ class VGG16Custom(nn.Module):
             nn.ReLU(),
             nn.MaxPool2d(kernel_size=2, stride=2, padding=0, dilation=1))
 
-        self.avgpool = nn.AdaptiveAvgPool2d(output_size=(7, 7))
         self.classifier = nn.Sequential(
             nn.Linear(in_features=25088, out_features=4096, bias=True),
             nn.ReLU(),
@@ -51,7 +50,7 @@ class VGG16Custom(nn.Module):
 
     def forward(self, x):
         x = self.features(x)
-        x = self.avgpool(x)
+        x = x.reshape(x.size(0), -1)
         x = self.classifier(x)
 
         return x
