@@ -3,11 +3,11 @@ import os
 import torch
 
 
-def data_transform(dataset_path, batch_size=16, use_transform=False):
+def data_transform(dataset_path, batch_size=16, use_transform=True):
     r"""Преобразование обучающих данных для расширения обучающей выборки и её нормализация
         применяем Crop, Horizontal flip и Normalize
         Для валидационной (тестовой) выборки только нормализация
-        Функция возвращает test и train dataloader """
+        Функция возвращает test и train dataloader в словаре"""
     normalize = transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     transform = {
         'train': transforms.Compose([
@@ -28,10 +28,10 @@ def data_transform(dataset_path, batch_size=16, use_transform=False):
         image_datasets = {x: datasets.ImageFolder(os.path.join(dataset_path, x), transform[x]) for x in
                           ['train', 'val']}
         dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=batch_size,
-                                                      shuffle=True, num_workers=2) for x in ['train', 'val']}
+                                                      shuffle=True) for x in ['train', 'val']}
     else:
         image_datasets = {x: datasets.ImageFolder(os.path.join(dataset_path, x), normalize) for x in ['train', 'val']}
         dataloaders = {x: torch.utils.data.DataLoader(image_datasets[x], batch_size=batch_size,
-                                                      shuffle=True, num_workers=2) for x in ['train', 'val']}
+                                                      shuffle=True) for x in ['train', 'val']}
 
     return dataloaders
