@@ -33,7 +33,7 @@ num_classes = len(class_names)
 loss_fn = nn.CrossEntropyLoss()
 
 if use_gpu:
-    print('Training on GPU...')
+    print('\nTraining on GPU...')
 
 if model == 'ResNet_custom':
     resnet18_cus = resnet18custom(n_classes=num_classes)

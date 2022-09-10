@@ -6,7 +6,7 @@ import os
 def train_model(model, dataloaders, dataset_sizes, criterion,
                 optimizer, num_epochs=20, use_gpu=False, PATH='scripts/models/weights'):
     since = time.time()
-    print(f'Start training the model {model.__class__.__name__}...')
+    print(f'\nStart training the model {model.__class__.__name__}...')
 
     best_model_wts = model.state_dict()
     best_acc = 0.0
