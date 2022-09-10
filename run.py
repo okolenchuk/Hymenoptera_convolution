@@ -6,6 +6,7 @@ import argparse
 
 use_gpu = torch.cuda.is_available()
 
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Process some arguments...')
     parser.add_argument('--dataset', required=True, help='Enter dataset path')
@@ -30,6 +31,9 @@ dataloaders, dataset_sizes, class_names = data_transform(path, batch_size=batch_
 
 num_classes = len(class_names)
 loss_fn = nn.CrossEntropyLoss()
+
+if use_gpu:
+    print('Training on GPU...')
 
 if model == 'ResNet_custom':
     resnet18_cus = resnet18custom(n_classes=num_classes)
