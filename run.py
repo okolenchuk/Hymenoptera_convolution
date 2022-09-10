@@ -14,7 +14,7 @@ if __name__ == '__main__':
                         help='If you want to add augmentations to your dataset')
     parser.add_argument('--use_model', type=str, required=True,
                         choices=['ResNet_custom', 'VGG16_custom', 'Resnet18', 'VGG16'], help='Choose model')
-    parser.add_argument('--pretrained', type=bool, action="store_true", required=True, default=True,
+    parser.add_argument('--pretrained', action="store_true", required=True, default=True,
                         help='Use pretrained model or not')
     parser.add_argument('--save_to', required=True, help='Enter path to save weights')
 
