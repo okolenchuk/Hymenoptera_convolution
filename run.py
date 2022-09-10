@@ -19,7 +19,7 @@ if __name__ == '__main__':
     parser.add_argument('--save_to', help='Enter path to save weights, default is .scripts/models/weights')
 
     args = parser.parse_args()
-    path, batch_size, use_transform, model = args.input, args.batch_size, args.use_transform, args.use_model
+    path, batch_size, use_transform, model = args.dataset, args.batch_size, args.use_transform, args.use_model
     pretrained, save_path = args.pretrained, args.save_to
 dataloaders, dataset_sizes, num_classes = data_transform(path, batch_size=batch_size, use_transform=use_transform)
 
