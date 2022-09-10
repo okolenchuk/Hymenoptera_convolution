@@ -3,7 +3,7 @@ import torch
 
 
 def train_model(model, dataloaders, dataset_sizes, criterion,
-                optimizer, num_epochs=20, use_gpu=False, PATH='scripts/models/'):
+                optimizer, num_epochs=20, use_gpu=False, PATH='scripts/models/weights'):
     since = time.time()
     print(f'Start training the model {model.__class__.__name__}...')
     print()
@@ -73,5 +73,5 @@ def train_model(model, dataloaders, dataset_sizes, criterion,
         time_elapsed // 60, time_elapsed % 60))
     print('Best val Acc: {:4f}'.format(best_acc))
 
-    torch.save(model.state_dict(), PATH+model.__class__.__name__)
+    torch.save(model.state_dict(), PATH+model.__class__.__name__+'.pth')
     return model, losses
