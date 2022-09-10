@@ -38,4 +38,4 @@ def data_transform(dataset_path, batch_size=16, use_transform=True):
     class_names = image_datasets['train'].classes
     print('\n'.join([f'Create {x} dataloader with {len(dataloaders[x])} batches' for x in dataloaders]))
     print(f"Class names are: {' '.join(class_names)}")
-    return dataloaders, dataset_sizes, class_names, len(class_names)
+    return dataloaders, dataset_sizes, class_names

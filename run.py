@@ -21,10 +21,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
     path, batch_size, use_transform, model = args.dataset, args.batch_size, args.use_transform, args.use_model
     pretrained, save_path = args.pretrained, args.save_to
-dataloaders, dataset_sizes, num_classes = data_transform(path, batch_size=batch_size, use_transform=use_transform)
+dataloaders, dataset_sizes, class_names = data_transform(path, batch_size=batch_size, use_transform=use_transform)
 
 # Now train the model
 
+num_classes = len(class_names)
 loss_fn = nn.CrossEntropyLoss()
 
 if model == 'ResNet_custom':
