@@ -4,8 +4,6 @@ __pycache__/
 *$py.class
 
 hymenoptera_data/
-#scripts/models/Resnet18Custom
-#scripts/models/VGG16Custom
 
 # C extensions
 *.so
@@ -133,3 +131,4 @@ dmypy.json
 # Pyre type checker
 .pyre/
 /hymenoptera_data/
+/scripts/models/weights/
