@@ -10,6 +10,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Process some arguments...')
     parser.add_argument('--dataset', required=True, help='Enter dataset path')
     parser.add_argument('--batch_size', type=int, default=32, help='Enter batch size')
+    parser.add_argument('--num_epoch', type=int, default=20, help='Enter number of epochs')
     parser.add_argument('--use_transform', action="store_true", default=True,
                         help='If you want to add augmentations to your dataset')
     parser.add_argument('--use_model', type=str, required=True,
@@ -20,8 +21,8 @@ if __name__ == '__main__':
                         help='Enter path to save weights, default is .scripts/models/weights')
 
     args = parser.parse_args()
-    path, batch_size, use_transform, model = args.dataset, args.batch_size, args.use_transform, args.use_model
-    pretrained, save_path = args.pretrained, args.save_to
+    path, batch_size, num_epoch, use_transform  = args.dataset, args.batch_size, args.num_epoch, args.use_transform
+    model, pretrained, save_path = args.use_model, args.pretrained, args.save_to
 
 dataloaders, dataset_sizes, class_names = data_transform(path, batch_size=batch_size, use_transform=use_transform)
 
