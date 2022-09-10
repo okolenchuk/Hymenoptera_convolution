@@ -68,6 +68,7 @@ def train_model(model, dataloaders, dataset_sizes, criterion,
                 best_model_wts = model.state_dict()
 
     time_elapsed = time.time() - since
+    print()
     print('Training complete in {:.0f}m {:.0f}s'.format(
         time_elapsed // 60, time_elapsed % 60))
     print('Best val Acc: {:4f}'.format(best_acc))
