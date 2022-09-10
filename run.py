@@ -12,11 +12,11 @@ if __name__ == '__main__':
     parser.add_argument('--dataset', required=True, help='Enter dataset path')
     parser.add_argument('--batch_size', type=int, default=32, help='Enter batch size')
     parser.add_argument('--num_epoch', type=int, default=20, help='Enter number of epochs')
-    parser.add_argument('--use_transform', action=argparse.BooleanOptionalAction, default=True,
+    parser.add_argument('--use_transform', action='store_true', default=True,
                         help='If you want to add augmentations to your dataset')
     parser.add_argument('--use_model', type=str, required=True,
                         choices=['ResNet_custom', 'VGG16_custom', 'Resnet18', 'VGG16'], help='Choose model')
-    parser.add_argument('--pretrained', action=argparse.BooleanOptionalAction, default=True,
+    parser.add_argument('--pretrained', action='store_true', default=True,
                         help='Use pretrained model or not, default is True')
     parser.add_argument('--save_to', default='scripts/models/weights',
                         help='Enter path to save weights, default is .scripts/models/weights')
