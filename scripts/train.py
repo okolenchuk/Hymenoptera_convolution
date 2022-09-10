@@ -28,7 +28,6 @@ def train_model(model, dataloaders, dataset_sizes, criterion,
             running_loss = 0.0
             running_corrects = 0
 
-            # итерируемся по батчам
             for data in dataloaders[phase]:
                 inputs, labels = data
 
