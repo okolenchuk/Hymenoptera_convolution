@@ -10,13 +10,13 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Process some arguments...')
     parser.add_argument('--dataset', required=True, help='Enter dataset path')
     parser.add_argument('--batch_size', type=int, default=32, help='Enter batch size')
-    parser.add_argument('--use_transform', action="store_true", required=True, default=True,
+    parser.add_argument('--use_transform', action="store_true", default=True,
                         help='If you want to add augmentations to your dataset')
     parser.add_argument('--use_model', type=str, required=True,
                         choices=['ResNet_custom', 'VGG16_custom', 'Resnet18', 'VGG16'], help='Choose model')
-    parser.add_argument('--pretrained', action="store_true", required=True, default=True,
-                        help='Use pretrained model or not')
-    parser.add_argument('--save_to', required=True, help='Enter path to save weights')
+    parser.add_argument('--pretrained', action="store_true", default=True,
+                        help='Use pretrained model or not, default is True')
+    parser.add_argument('--save_to', help='Enter path to save weights, default is .scripts/models/weights')
 
     args = parser.parse_args()
     path, batch_size, use_transform, model = args.input, args.batch_size, args.use_transform, args.use_model
