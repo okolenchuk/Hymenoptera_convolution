@@ -17,7 +17,7 @@ if __name__ == '__main__':
     parser.add_argument('--use_model', type=str, required=True,
                         choices=['ResNet_custom', 'VGG16_custom', 'Resnet18', 'VGG16'], help='Choose model')
     parser.add_argument('--pretrained', action='store_true', default=False,
-                        help='Use pretrained model or not, default is True')
+                        help='Use pretrained model or not, default is False')
     parser.add_argument('--save_to', default='scripts/models/weights',
                         help='Enter path to save weights, default is .scripts/models/weights')
 
