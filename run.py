@@ -16,12 +16,12 @@ if __name__ == '__main__':
                         choices=['ResNet_custom', 'VGG16_custom', 'Resnet18', 'VGG16'], help='Choose model')
     parser.add_argument('--pretrained', action="store_true", default=True,
                         help='Use pretrained model or not, default is True')
-    parser.add_argument('--save_to', help='Enter path to save weights, default is .scripts/models/weights')
+    parser.add_argument('--save_to', default='scripts/models/weights',
+                        help='Enter path to save weights, default is .scripts/models/weights')
 
     args = parser.parse_args()
     path, batch_size, use_transform, model = args.dataset, args.batch_size, args.use_transform, args.use_model
     pretrained, save_path = args.pretrained, args.save_to
-
 
 dataloaders, dataset_sizes, class_names = data_transform(path, batch_size=batch_size, use_transform=use_transform)
 
@@ -50,5 +50,3 @@ elif model == 'VGG16':
     optimizer_ft = optim.Adam(vgg16_torch.parameters(), lr=1e-3)
     resnet18_cus, losses = train_model(vgg16_torch, dataloaders, dataset_sizes, loss_fn, optimizer_ft, num_epochs=20,
                                        use_gpu=use_gpu, PATH=save_path)
-
-
